@@ -1,4 +1,4 @@
-package org.launchcode.LiftOffProject.models;
+package org.launchcode.LiftOffProject.models.DTO;
 
 public class Login {
 
