@@ -32,9 +32,12 @@
 
 
     <div class="form-group">
-        <label th:for="name">Steps</label>
-        <input class="form-control" th:field="${recipe.steps}" />
-        <span th:errors="${recipe.steps}" class="error"></span>
+        <label th:for="steps">Steps</label>
+        <th:block th:each="step : ${steps}">
+            <input type="checkbox" name="steps" th:value="${step.id}">
+            <label th:text="${step.description}"></label>
+        </th:block>
+        <a th:href="@{'/steps/add'}">Add Steps</a>
     </div>
 
     <input type="submit" value="Add Recipe" />
