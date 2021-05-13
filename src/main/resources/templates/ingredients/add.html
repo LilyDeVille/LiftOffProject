@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <title></title>
+</head>
+<body>
+
+<form method="post" style="max-width:600px;">
+    <div class="form-group">
+        <label th:for="name">Ingredient Name</label>
+        <input class="form-control" th:field="${ingredient.name}" />
+        <span th:errors="${ingredient.name}" class="error"></span>
+    </div>
+
+    <div class="form-group">
+        <label th:for="description">Ingredient Quantity</label>
+        <input class="form-control" th:field="${ingredient.quantity}" />
+        <span th:errors="${ingredient.quantity}" class="error"></span>
+    </div>
+
+    <div class="form-group">
+        <label th:for="description">Ingredient Measurement</label>
+        <input class="form-control" th:field="${ingredient.unitOfMeasurement}" />
+        <span th:errors="${ingredient.unitOfMeasurement}" class="error"></span>
+    </div>
+
+    <input type="submit" value="Add Ingredient" />
+</form>
+</body>
+</html>

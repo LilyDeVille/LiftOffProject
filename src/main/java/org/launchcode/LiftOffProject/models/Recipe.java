@@ -3,10 +3,9 @@ package org.launchcode.LiftOffProject.models;
 
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Recipe<string> {
@@ -16,12 +15,18 @@ public class Recipe<string> {
     private int id;
     private String name;
     private String description;
-    private String ingredients;
+    @ManyToMany
+    private List<Ingredient> ingredients = new ArrayList<Ingredient>();
+    private String steps;
 
-        public Recipe(String name, String description, String ingredients) {
+        public Recipe(String name, String description, List<Ingredient> ingredients) {
             this.name = name;
             this.description = description;
             this.ingredients = ingredients;
+    }
+
+    public Recipe() {
+
     }
 
     public int getId() {
@@ -48,11 +53,19 @@ public class Recipe<string> {
         this.description = description;
     }
 
-    public String getIngredients() {
+    public List<Ingredient> getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(String ingredients) {
+    public void setIngredients(List<Ingredient> ingredients) {
         this.ingredients = ingredients;
+    }
+
+    public String getSteps() {
+        return steps;
+    }
+
+    public void setSteps(String steps) {
+        this.steps = steps;
     }
 }

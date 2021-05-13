@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Add Recipe</title>
+</head>
+<body>
+
+<h1>Add New Recipe</h1>
+
+
+<form method="post" style="max-width:600px;">
+    <div class="form-group">
+        <label th:for="name">Name</label>
+        <input class="form-control" th:field="${recipe.name}" />
+        <span th:errors="${recipe.name}" class="error"></span>
+    </div>
+    <div class="form-group">
+        <label th:for="name">Description</label>
+        <input class="form-control" th:field="${recipe.description}" />
+        <span th:errors="${recipe.description}" class="error"></span>
+    </div>
+
+    <div class="form-group">
+        <label th:for="ingredients">Ingredients</label>
+        <th:block th:each="ingredient : ${ingredients}">
+            <input type="checkbox" name="ingredients" th:value="${ingredient.id}">
+            <label th:text="${ingredient.name}"></label>
+        </th:block>
+        <a th:href="@{'/ingredients/add'}">Add Ingredients</a>
+    </div>
+
+
+    <div class="form-group">
+        <label th:for="name">Steps</label>
+        <input class="form-control" th:field="${recipe.steps}" />
+        <span th:errors="${recipe.steps}" class="error"></span>
+    </div>
+
+    <input type="submit" value="Add Recipe" />
+</form>
+</body>
+</html>
