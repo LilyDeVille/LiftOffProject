@@ -18,6 +18,8 @@ public class Recipe<string> {
     @ManyToMany
     private List<Ingredient> ingredients = new ArrayList<Ingredient>();
     private String steps;
+    @Column(nullable = true, length =4000)
+    private String photos;
 
         public Recipe(String name, String description, List<Ingredient> ingredients) {
             this.name = name;
@@ -67,5 +69,13 @@ public class Recipe<string> {
 
     public void setSteps(String steps) {
         this.steps = steps;
+    }
+
+    public String getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(String photos) {
+        this.photos = photos;
     }
 }
