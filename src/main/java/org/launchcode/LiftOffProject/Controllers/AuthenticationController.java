@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @Controller
@@ -30,7 +31,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/register")
-    public String processRegistrationForm(@ModelAttribute Register register, Model model) {
+    public String processRegistrationForm(@ModelAttribute Register register, Model model, HttpServletRequest request) {
         model.addAttribute("register", register);
 
         //if (errors.hasErrors()) {
@@ -56,7 +57,7 @@ public class AuthenticationController {
 
         User newUser = new User(register.getUsername(), register.getPassword());
         userRepository.save(newUser);
-        //setUserInSession(request.getSession(), newUser);
+        setUserInSession(request.getSession(), newUser);
 
 
         return "register";
@@ -69,7 +70,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/login")
-    public String processLoginForm(@ModelAttribute Login login, Model model) {
+    public String processLoginForm(@ModelAttribute Login login, Model model, HttpServletRequest request) {
         model.addAttribute("login", login);
 
         //if (errors.hasErrors()) {
@@ -93,9 +94,9 @@ public class AuthenticationController {
             return "login";
         }
 
-       // setUserInSession(request.getSession(), theUser);
+        setUserInSession(request.getSession(), theUser);
 
-        return "login";
+        return "redirect:";
     }
 
     private static void setUserInSession(HttpSession session, User user) {

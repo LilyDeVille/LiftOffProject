@@ -3,10 +3,9 @@ package org.launchcode.LiftOffProject.models;
 import com.sun.istack.NotNull;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class User {
@@ -21,6 +20,9 @@ public class User {
     @NotNull
     private String pwHash;
 
+    @OneToMany
+    List<Recipe> recipes = new ArrayList<>();
+
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
     public User() {}
@@ -29,7 +31,6 @@ public class User {
         this.username = username;
         this.pwHash = encoder.encode(password);
     }
-
 
     public boolean isMatchingPassword(String password) {
         return encoder.matches(password, pwHash);
@@ -46,5 +47,29 @@ public class User {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPwHash() {
+        return pwHash;
+    }
+
+    public void setPwHash(String pwHash) {
+        this.pwHash = pwHash;
+    }
+
+    public List<Recipe> getRecipes() {
+        return recipes;
+    }
+
+    public void setRecipes(List<Recipe> recipes) {
+        this.recipes = recipes;
+    }
+
+    public static BCryptPasswordEncoder getEncoder() {
+        return encoder;
     }
 }

@@ -14,8 +14,8 @@ public class Ingredient {
     private String unitOfMeasurement;
     private String name;
 
-    @ManyToMany(mappedBy = "ingredients")
-    private List<Recipe> recipes = new ArrayList<Recipe>();
+    @ManyToOne
+    private Recipe recipes;
 
     public Ingredient() {
 
@@ -53,11 +53,11 @@ public class Ingredient {
         this.unitOfMeasurement = unitOfMeasurement;
     }
 
-    public List<Recipe> getRecipes() {
+    public Recipe getRecipes() {
         return recipes;
     }
 
-    public void setRecipes(List<Recipe> recipes) {
+    public void setRecipes(Recipe recipes) {
         this.recipes = recipes;
     }
 }

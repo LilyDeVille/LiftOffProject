@@ -15,16 +15,31 @@ public class Recipe<string> {
     private int id;
     private String name;
     private String description;
-    @ManyToMany
+    @OneToMany
     private List<Ingredient> ingredients = new ArrayList<Ingredient>();
-    private String steps;
+    @OneToMany
+    private List<Step> steps = new ArrayList<>();
     @Column(nullable = true, length =4000)
     private String photos;
+    @ManyToOne
+    private User user;
 
-        public Recipe(String name, String description, List<Ingredient> ingredients) {
-            this.name = name;
-            this.description = description;
-            this.ingredients = ingredients;
+
+    public Recipe(int id, String name, String description, List<Ingredient> ingredients, List<Step> steps, String photos, User user) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.ingredients = ingredients;
+        this.steps = steps;
+        this.photos = photos;
+        this.user = user;
+    }
+
+    @Transient
+    public String getPhotosImagePath() {
+        if (photos == null) return null;
+
+        return "/recipe-photos/" + id + "/" + photos;
     }
 
     public Recipe() {
@@ -63,11 +78,11 @@ public class Recipe<string> {
         this.ingredients = ingredients;
     }
 
-    public String getSteps() {
+    public List<Step> getSteps() {
         return steps;
     }
 
-    public void setSteps(String steps) {
+    public void setSteps(List<Step> steps) {
         this.steps = steps;
     }
 
@@ -77,5 +92,13 @@ public class Recipe<string> {
 
     public void setPhotos(String photos) {
         this.photos = photos;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
