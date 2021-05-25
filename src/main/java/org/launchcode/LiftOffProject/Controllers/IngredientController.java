@@ -27,6 +27,7 @@ public class IngredientController {
     public String displayAddIngredientForm(Model model, @PathVariable int recipeId) {
         Recipe recipe = recipeRepository.findById(recipeId).get();
         List<Ingredient> recipeIngredients = ingredientRepository.findByRecipe(recipe);
+        model.addAttribute("recipeId", recipeId);
         model.addAttribute("recipeIngredients", recipeIngredients);
         model.addAttribute(new Ingredient());
         return "ingredients/add";
@@ -37,7 +38,7 @@ public class IngredientController {
         Recipe recipe = recipeRepository.findById(recipeId).get();
         newIngredient.setRecipe(recipe);
         ingredientRepository.save(newIngredient);
-        return "redirect:ingredients/add/"+ recipe.getId();
+        return "redirect:../../ingredients/add/"+ recipe.getId();
     }
 
 

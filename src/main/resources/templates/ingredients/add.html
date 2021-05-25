@@ -32,17 +32,23 @@
             <th>Measurement</th>
         </tr>
 
-        <tr>
-            <td th:each="ingredient : ${recipeIngredients}">
-                <ul>
-                    <li th:text=" ${ingredient.name}"></li>
-                </ul>
+        <tr th:each="ingredient : ${recipeIngredients}">
+            <td th:text=" ${ingredient.name}">
+
+            </td>
+
+            <td th:text=" ${ingredient.quantity}">
+            </td>
+
+            <td th:text=" ${ingredient.unitOfMeasurement}">
+
             </td>
         </tr>
 
     </table>
 
     <input type="submit" value="Add Ingredient" />
+    <a th:href="@{'../../steps/add/' + ${recipeId}}">Add Steps</a>
 </form>
 </body>
 </html>

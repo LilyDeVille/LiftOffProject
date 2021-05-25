@@ -18,6 +18,29 @@
         <span th:errors="${step.description}" class="error"></span>
     </div>
 
+    <table>
+
+        <tr>
+            <th>Order</th>
+            <th>Description</th>
+        </tr>
+
+        <tr th:each="step : ${recipeSteps}">
+            <td th:text=" ${step.stepOrder}">
+
+            </td>
+
+            <td th:text=" ${step.description}">
+
+            </td>
+
+
+
+
+        </tr>
+
+    </table>
+
     <input type="submit" value="Add Step" />
 </form>
 </body>
