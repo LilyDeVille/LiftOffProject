@@ -24,6 +24,24 @@
         <span th:errors="${ingredient.unitOfMeasurement}" class="error"></span>
     </div>
 
+    <table>
+
+        <tr>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Measurement</th>
+        </tr>
+
+        <tr>
+            <td th:each="ingredient : ${recipeIngredients}">
+                <ul>
+                    <li th:text=" ${ingredient.name}"></li>
+                </ul>
+            </td>
+        </tr>
+
+    </table>
+
     <input type="submit" value="Add Ingredient" />
 </form>
 </body>

@@ -18,7 +18,7 @@
     <div class="form-group">
         <label th:for="name">Description</label>
         <input class="form-control" th:field="${recipe.description}" />
-        <span th:errors="${recipe.description}" class="error"></span>
+        <textarea th:errors="${recipe.description}" class="error"></textarea>
     </div>
 
 <!--    <div class="form-group">-->
@@ -30,15 +30,15 @@
 <!--        <a th:href="@{'/ingredients/add'}">Add Ingredients</a>-->
 <!--    </div>-->
 
-    <div class="form-group">
+<!--    <div class="form-group">-->
 
-        <label th:for="ingredients">Ingredients</label>
-        <ul><th:block th:each="ingredient : ${ingredients}">
-            <li th:text="${ingredient.name}"></li>
-        </th:block></ul>
-        <a th:href="@{'/ingredients/add'}">Add Ingredients</a>
+<!--        <label th:for="ingredients">Ingredients</label>-->
+<!--        <ul><th:block th:each="ingredient : ${ingredients}">-->
+<!--            <li th:text="${ingredient.name}"></li>-->
+<!--        </th:block></ul>-->
+<!--        <a th:href="@{'/ingredients/add'}">Add Ingredients</a>-->
 
-    </div>
+<!--    </div>-->
 
 
 <!--    <div class="form-group">-->
@@ -50,15 +50,15 @@
 <!--        <a th:href="@{'/steps/add'}">Add Steps</a>-->
 <!--    </div>-->
 
-    <div class="form-group">
+<!--    <div class="form-group">-->
 
-        <label th:for="steps">Steps</label>
-        <ol><th:block th:each="step : ${steps}">
-            <li th:text="${step.name}"></li>
-        </th:block></ol>
-        <a th:href="@{'/steps/add'}">Add Steps</a>
+<!--        <label th:for="steps">Steps</label>-->
+<!--        <ol><th:block th:each="step : ${steps}">-->
+<!--            <li th:text="${step.name}"></li>-->
+<!--        </th:block></ol>-->
+<!--        <a th:href="@{'/steps/add'}">Add Steps</a>-->
 
-    </div>
+<!--    </div>-->
 
     <div class="form-group">
         <label>Photos: </label>
@@ -67,7 +67,7 @@
 
 
 
-    <input type="submit" value="Add Recipe" />
+    <input type="submit" value="Next" />
 </form>
 </body>
 </html>

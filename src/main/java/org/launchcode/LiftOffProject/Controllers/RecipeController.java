@@ -59,7 +59,7 @@ public class RecipeController {
         User user = userRepository.findById(userID).get();
         newRecipe.setUser(user);
         recipeRepository.save(newRecipe);
-        return "redirect";
+        return "redirect:ingredients/add/"+ newRecipe.getId();
     }
 
 }

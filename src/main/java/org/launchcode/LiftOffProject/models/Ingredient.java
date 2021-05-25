@@ -15,7 +15,7 @@ public class Ingredient {
     private String name;
 
     @ManyToOne
-    private Recipe recipes;
+    private Recipe recipe;
 
     public Ingredient() {
 
@@ -53,11 +53,11 @@ public class Ingredient {
         this.unitOfMeasurement = unitOfMeasurement;
     }
 
-    public Recipe getRecipes() {
-        return recipes;
+    public Recipe getRecipe() {
+        return recipe;
     }
 
-    public void setRecipes(Recipe recipes) {
-        this.recipes = recipes;
+    public void setRecipe(Recipe recipe) {
+        this.recipe = recipe;
     }
 }
