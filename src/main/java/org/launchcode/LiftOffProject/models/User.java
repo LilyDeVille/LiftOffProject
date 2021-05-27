@@ -72,4 +72,9 @@ public class User {
     public static BCryptPasswordEncoder getEncoder() {
         return encoder;
     }
+
+    @Override
+    public String toString() {
+        return username;
+    }
 }

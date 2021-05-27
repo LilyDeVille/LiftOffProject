@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+
+    <title></title>
+</head>
+<body>
+<h1 th:text="${recipe.name}"></h1>
+<h3 th:text="${recipe.user}"></h3>
+<img th:src="@{${recipe.photosImagePath}}" style="width:500px;height:400px;"/>
+
+
+
+<table>
+
+    <tr>
+        <th>Name</th>
+        <th>Quantity</th>
+        <th>Measurement</th>
+    </tr>
+
+    <tr th:each="ingredient : ${ingredients}">
+        <td th:text=" ${ingredient.name}">
+
+        </td>
+
+        <td th:text=" ${ingredient.quantity}">
+        </td>
+
+        <td th:text=" ${ingredient.unitOfMeasurement}">
+
+        </td>
+    </tr>
+
+</table>
+
+<p th:text="${recipe.description}"></p>
+
+<table>
+
+    <tr>
+        <th>Order</th>
+        <th>Description</th>
+    </tr>
+
+    <tr th:each="step : ${steps}">
+        <td th:text=" ${step.stepOrder}">
+
+        </td>
+
+        <td th:text=" ${step.description}">
+
+        </td>
+
+
+
+
+    </tr>
+
+</table>
+
+
+</body>
+</html>
