@@ -14,11 +14,12 @@
         <tr  th:each="recipe : ${recipes}">
             <td>
 
-<!--                <p th:text="${recipe.getPhoto()}"></p>-->
-                Name: <p th:text="${recipe.getName()}"></p>
-                Description: <p th:text="${recipe.getDescription()}"></p>
-                Ingredients: <p th:text="${recipe.getIngredients()}"></p>
-                Steps: <p th:text="${recipe.getSteps()}"></p>
+
+                <h3 th:text="${recipe.name}"></h3>
+                <h4 th:text="${recipe.user}"></h4>
+                <img th:src="@{${recipe.photosImagePath}}" style="width:500px;height:400px;"/>
+                <p th:text="${recipe.description}"></p>
+                <a th:href="@{'../../view/' + ${recipe.id}}">More</a>
 
             </td>
         </tr>
