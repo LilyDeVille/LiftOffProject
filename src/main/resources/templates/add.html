@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head>
+<head th:replace="fragments :: head">
+
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Add Recipe</title>
 </head>
 <body>
+
+<div th:replace="fragments :: page-header"></div>
 
 <h1>Add New Recipe</h1>
 
@@ -67,7 +70,7 @@
 
 
 
-    <input type="submit" value="Next" />
+    <input type="submit" value="Next"></input>
 </form>
 </body>
 </html>

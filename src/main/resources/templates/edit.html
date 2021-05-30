@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Edit Recipe</title>
+</head>
+<body>
+
+<div th:replace="fragments :: page-header"></div>
+
+<h1>Edit Recipe</h1>
+
+
+<form method="post" th:object="${recipe}" style="max-width:600px;" enctype="multipart/form-data">
+    <div class="form-group">
+        <label th:for="name">Name</label>
+        <input class="form-control" th:field="${recipe.name}" />
+        <span th:errors="${recipe.name}" class="error"></span>
+    </div>
+    <div class="form-group">
+        <label th:for="name">Description</label>
+        <input style="height:100px;width:200px;font-size:10pt;" class="form-control" th:field="${recipe.description}" />
+        <textarea th:errors="${recipe.description}" class="error"></textarea>
+    </div>
+
+
+    <input type="submit" name="action" value="Save and Finish" />
+    <input type="submit" name="action" value="Save and Edit Ingredients" />
+    <input type="submit" name="action" value="Save and Edit Steps" />
+
+
+</form>
+</body>
+</html>

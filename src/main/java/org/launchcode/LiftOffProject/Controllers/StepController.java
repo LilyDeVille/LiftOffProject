@@ -44,6 +44,39 @@ public class StepController {
 
     }
 
+    @GetMapping("view/{recipeId}")
+    public String viewSteps(Model model, @PathVariable int recipeId) {
+        Recipe recipe = recipeRepository.findById(recipeId).get();
+        List<Step> recipeSteps = stepRepository.findByRecipe(recipe);
+        model.addAttribute("recipeId", recipeId);
+        model.addAttribute("recipeSteps", recipeSteps);
+
+        return "steps/view";
+    }
+
+    @PostMapping("view/{recipeId}")
+    public String processViewSteps(@RequestParam("stepId") int id) {
+        return "redirect:../../steps/edit/" + id;
+    }
+
+    @GetMapping("edit/{stepId}")
+    public String editSteps(Model model, @PathVariable int stepId) {
+        Step step = stepRepository.findById(stepId).get();
+        model.addAttribute("step", step);
+        return "steps/edit";
+    }
+
+    @PostMapping("edit/{stepId}")
+    public String processEditSteps(Model model, @PathVariable int stepId, @ModelAttribute Step editedStep) {
+        Step step = stepRepository.findById(stepId).get();
+        step.setDescription(editedStep.getDescription());
+        stepRepository.save(step);
+
+        return "redirect:../../steps/view/" + step.getRecipe().getId();
+
+    }
+
+
 
 
 }

@@ -81,5 +81,36 @@ public class RecipeController {
 
     };
 
+    @GetMapping("edit/{recipeId}")
+    public String editRecipe(Model model, @PathVariable int recipeId) {
+        Recipe recipe = recipeRepository.findById(recipeId).get();
+        model.addAttribute("recipe", recipe);
+
+        return "edit";
+    }
+
+    @PostMapping("edit/{recipeId}")
+    public String saveEditRecipe(Model model, @PathVariable int recipeId, @ModelAttribute Recipe editedRecipe, @RequestParam(value="action") String action) {
+       saveEditedChanges(recipeId, editedRecipe);
+       String route = "";
+       if(action.equals("Save and Finish")){
+           route = "redirect:../view/" + recipeId;
+       }
+       else if(action.equals("Save and Edit Ingredients")){
+           route = "redirect:../ingredients/view/"+ recipeId;
+       }
+       else{
+           route = "redirect:../steps/view/"+ recipeId;
+       }
+        return route;
+    }
+
+    private void saveEditedChanges (int recipeId, Recipe editedRecipe) {
+        Recipe recipe = recipeRepository.findById(recipeId).get();
+        recipe.setName(editedRecipe.getName());
+        recipe.setDescription(editedRecipe.getDescription());
+        recipeRepository.save(recipe);
+    }
+
 }
 

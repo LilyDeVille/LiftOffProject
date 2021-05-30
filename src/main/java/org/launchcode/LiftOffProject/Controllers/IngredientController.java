@@ -41,6 +41,40 @@ public class IngredientController {
         return "redirect:../../ingredients/add/"+ recipe.getId();
     }
 
+    @GetMapping("view/{recipeId}")
+    public String viewIngredients(Model model, @PathVariable int recipeId) {
+        Recipe recipe = recipeRepository.findById(recipeId).get();
+        List<Ingredient> recipeIngredients = ingredientRepository.findByRecipe(recipe);
+        model.addAttribute("recipeId", recipeId);
+        model.addAttribute("recipeIngredients", recipeIngredients);
+
+        return "ingredients/view";
+    }
+
+    @PostMapping("view/{recipeId}")
+    public String processViewIngredients(@RequestParam("ingredientId") int id) {
+        return "redirect:../../ingredients/edit/" + id;
+    }
+
+
+    @GetMapping("edit/{ingredientId}")
+    public String editIngredients(Model model, @PathVariable int ingredientId) {
+        Ingredient ingredient = ingredientRepository.findById(ingredientId).get();
+        model.addAttribute("ingredient", ingredient);
+        return "ingredients/edit";
+    }
+
+    @PostMapping("edit/{ingredientId}")
+    public String processEditIngredients(Model model, @PathVariable int ingredientId, @ModelAttribute Ingredient editedIngredient) {
+        Ingredient ingredient = ingredientRepository.findById(ingredientId).get();
+        ingredient.setName(editedIngredient.getName());
+        ingredient.setQuantity(editedIngredient.getQuantity());
+        ingredient.setUnitOfMeasurement(editedIngredient.getUnitOfMeasurement());
+        ingredientRepository.save(ingredient);
+
+        return "redirect:../../ingredients/view/" + ingredient.getRecipe().getId();
+
+    }
 
 
 }
