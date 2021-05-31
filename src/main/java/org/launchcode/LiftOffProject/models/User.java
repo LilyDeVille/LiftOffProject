@@ -23,6 +23,9 @@ public class User {
     @OneToMany
     List<Recipe> recipes = new ArrayList<>();
 
+    @OneToMany
+    private List<RecipeView> recipeViews = new ArrayList<RecipeView>();
+
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
     public User() {}
@@ -76,5 +79,13 @@ public class User {
     @Override
     public String toString() {
         return username;
+    }
+
+    public List<RecipeView> getRecipeViews() {
+        return recipeViews;
+    }
+
+    public void setRecipeViews(List<RecipeView> recipeViews) {
+        this.recipeViews = recipeViews;
     }
 }

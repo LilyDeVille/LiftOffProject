@@ -10,6 +10,52 @@
 
 <div th:replace="fragments :: page-header"></div>
 
+<table>
+
+    <tr>
+        <th>Recently Viewed Recipes</th>
+
+    </tr>
+
+    <tr th:each="recipe : ${recentlyViewedRecipes}">
+        <td >
+            <h4><a th:href="@{'view/' + ${recipe.id}}" th:text=" ${recipe.name}"></a></h4>
+            <img th:src="@{${recipe.photosImagePath}}" style="width:500px;height:400px;"/>
+
+
+
+        </td>
+
+    </tr>
+
+</table>
+
+<table>
+
+    <tr>
+        <th>Most Popular</th>
+    </tr>
+
+    <tr th:each="recipe : ${mostPopular}">
+        <td >
+            <h4><a th:href="@{'view/' + ${recipe.id}}" th:text=" ${recipe.name}"></a></h4>
+            <img th:src="@{${recipe.photosImagePath}}" style="width:500px;height:400px;"/>
+
+
+
+        </td>
+
+    </tr>
+
+</table>
+
+<div>
+    <h3>Featured Recipe</h3>
+    <h4><a th:href="@{'view/' + ${featuredRecipe.id}}" th:text=" ${featuredRecipe.name}"></a></h4>
+    <img th:src="@{${featuredRecipe.photosImagePath}}" style="width:500px;height:400px;"/>
+
+</div>
+
 
 </body>
 </html>

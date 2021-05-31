@@ -1,15 +1,9 @@
 package org.launchcode.LiftOffProject.Controllers;
 
 
-import org.launchcode.LiftOffProject.Repository.IngredientRepository;
-import org.launchcode.LiftOffProject.Repository.RecipeRepository;
-import org.launchcode.LiftOffProject.Repository.StepRepository;
-import org.launchcode.LiftOffProject.Repository.UserRepository;
+import org.launchcode.LiftOffProject.Repository.*;
 import org.launchcode.LiftOffProject.Utilities.FileUploadUtil;
-import org.launchcode.LiftOffProject.models.Ingredient;
-import org.launchcode.LiftOffProject.models.Recipe;
-import org.launchcode.LiftOffProject.models.Step;
-import org.launchcode.LiftOffProject.models.User;
+import org.launchcode.LiftOffProject.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -36,6 +31,9 @@ public class RecipeController {
 
     @Autowired
     private StepRepository stepRepository;
+
+    @Autowired
+    private RecipeViewRepository recipeViewRepository;
 
 
     @GetMapping("add")
@@ -68,7 +66,7 @@ public class RecipeController {
     }
 
     @GetMapping("view/{recipeId}")
-    public String viewRecipe(Model model, @PathVariable int recipeId) {
+    public String viewRecipe(Model model, @PathVariable int recipeId, HttpServletRequest request) {
 
         Recipe recipe = recipeRepository.findById(recipeId).get();
         List<Ingredient> ingredients = ingredientRepository.findByRecipe(recipe);
@@ -76,6 +74,14 @@ public class RecipeController {
         model.addAttribute("ingredients", ingredients);
         model.addAttribute("steps", steps);
         model.addAttribute("recipe", recipe);
+        int userID = (int)request.getSession().getAttribute("user");
+        User user = userRepository.findById(userID).get();
+        RecipeView recipeView = new RecipeView();
+        recipeView.setUser(user);
+        recipeView.setDatetime(LocalDateTime.now());
+        recipeView.setRecipe(recipe);
+        recipeViewRepository.save(recipeView);
+
 
         return "view";
 

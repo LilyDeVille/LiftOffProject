@@ -1,6 +1,7 @@
 package org.launchcode.LiftOffProject.Repository;
 
 import org.launchcode.LiftOffProject.models.Recipe;
+import org.launchcode.LiftOffProject.models.RecipeView;
 import org.launchcode.LiftOffProject.models.User;
 import org.springframework.data.repository.CrudRepository;
 
@@ -13,4 +14,6 @@ public interface RecipeRepository extends CrudRepository<Recipe, Integer> {
     //Recipe findById(int id);
 
     List<Recipe> findByUser(User user);
+
+//    Recipe findByRecipeView(RecipeView recipeView);
 }

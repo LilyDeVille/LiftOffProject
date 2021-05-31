@@ -23,6 +23,8 @@ public class Recipe<string> {
     private String photos;
     @ManyToOne
     private User user;
+    @OneToMany
+    private List<RecipeView> recipeViews = new ArrayList<RecipeView>();
 
 
     public Recipe(int id, String name, String description, List<Ingredient> ingredients, List<Step> steps, String photos, User user) {
@@ -100,5 +102,13 @@ public class Recipe<string> {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public List<RecipeView> getRecipeViews() {
+        return recipeViews;
+    }
+
+    public void setRecipeViews(List<RecipeView> recipeViews) {
+        this.recipeViews = recipeViews;
     }
 }
