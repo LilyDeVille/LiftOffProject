@@ -76,11 +76,16 @@ public class RecipeController {
         model.addAttribute("recipe", recipe);
         int userID = (int)request.getSession().getAttribute("user");
         User user = userRepository.findById(userID).get();
+        boolean isOwner = false;
+        if (user.getUsername().equals(recipe.getUser().getUsername())) {
+            isOwner = true;
+        }
         RecipeView recipeView = new RecipeView();
         recipeView.setUser(user);
         recipeView.setDatetime(LocalDateTime.now());
         recipeView.setRecipe(recipe);
         recipeViewRepository.save(recipeView);
+        model.addAttribute("isOwner", isOwner);
 
 
         return "view";

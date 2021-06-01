@@ -60,7 +60,7 @@ public class AuthenticationController {
         setUserInSession(request.getSession(), newUser);
 
 
-        return "register";
+        return "redirect:../";
     }
 
     @GetMapping("/login")
@@ -98,6 +98,13 @@ public class AuthenticationController {
 
         return "redirect:";
     }
+
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request){
+        request.getSession().invalidate();
+        return "redirect:/login";
+    }
+
 
     private static void setUserInSession(HttpSession session, User user) {
         session.setAttribute(userSessionKey, user.getId());

@@ -10,7 +10,7 @@
 
 <h1 th:text="${recipe.name}"></h1>
 <h3 th:text="${recipe.user}"></h3>
-<a th:href="@{'../../edit/' + ${recipeId}}">Edit Recipe</a>
+<a th:if="${isOwner}" th:href="@{'../../edit/' + ${recipeId}}">Edit Recipe</a>
 <img th:src="@{${recipe.photosImagePath}}" style="width:500px;height:400px;"/>
 
 <p th:text="${recipe.description}"></p>

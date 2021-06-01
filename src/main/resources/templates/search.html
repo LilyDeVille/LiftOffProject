@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+</head>
+<body>
+
+<div th:replace="fragments :: page-header"></div>
+
+<div class="container body-content">
+
+    <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
+
+    <form th:action="@{/search/results}" method = "post">
+        <h2>Search by:</h2>
+
+        <p>
+                <input
+                        type="radio"
+                        name="searchType"
+                        th:id="recipe"
+                        th:value="recipe"
+                        th:checked="true"/>
+                <label th:for="recipe" th:text="Recipe"></label>
+
+            <input
+                    type="radio"
+                    name="searchType"
+                    th:id="author"
+                    th:value="author"
+                    th:checked="true"/>
+            <label th:for="author" th:text="Author"></label>
+
+
+        </p>
+
+        <p>
+            <label for="searchTerm">Keyword:</label>
+            <input type="text" name="searchTerm" id="searchTerm" />
+        </p>
+
+        <input type="submit" value="Search" />
+    </form>
+
+    <hr />
+
+    <!-- TODO #4 - Loop over the search results to display all job fields. -->
+
+    <table class="search-listing">
+
+        <tr  th:each="recipe : ${recipes}">
+            <td>
+                <h4><a th:href="@{'../view/' + ${recipe.id}}" th:text=" ${recipe.name}"></a></h4>
+                <img th:src="@{${recipe.photosImagePath}}" style="width:500px;height:400px;"/>
+
+            </td>
+        </tr>
+
+    </table>
+
+
+</div>
+
+</body>
+</html>
