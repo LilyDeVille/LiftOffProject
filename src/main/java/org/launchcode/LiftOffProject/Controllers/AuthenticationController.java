@@ -60,7 +60,7 @@ public class AuthenticationController {
         setUserInSession(request.getSession(), newUser);
 
 
-        return "redirect:../";
+        return "redirect:";
     }
 
     @GetMapping("/login")

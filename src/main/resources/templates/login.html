@@ -9,9 +9,10 @@
 <form action="#" th:action="@{/login}" th:object="${login}" method="post">
     <p>Username: <input type="text" th:field="*{username}" /></p>
     <p>Password: <input type="password" th:field="*{password}" id="myInput" /></p>
-    <p><input type="submit" value="Log In" /> <input type="checkbox" onclick="showPassword()">Show Password
+    <p><input type="submit" value="Log In" />
     </p>
 </form>
+<a th:href="@{'../register'}">Register</a>
 </body>
 </html>
 
