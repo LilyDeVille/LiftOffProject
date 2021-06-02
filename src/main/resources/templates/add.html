@@ -20,48 +20,9 @@
     </div>
     <div class="form-group">
         <label th:for="name">Description</label>
-        <input style="height:100px;width:200px;font-size:10pt;" class="form-control" th:field="${recipe.description}" />
-        <textarea th:errors="${recipe.description}" class="error"></textarea>
+        <textarea th:field="${recipe.description}" class="form-control" rows="6"></textarea>
     </div>
 
-<!--    <div class="form-group">-->
-<!--        <label th:for="ingredients">Ingredients</label>-->
-<!--        <th:block th:each="ingredient : ${ingredients}">-->
-<!--            <input type="checkbox" name="ingredients" th:value="${ingredient.id}">-->
-<!--            <label th:text="${ingredient.name}"></label>-->
-<!--        </th:block>-->
-<!--        <a th:href="@{'/ingredients/add'}">Add Ingredients</a>-->
-<!--    </div>-->
-
-<!--    <div class="form-group">-->
-
-<!--        <label th:for="ingredients">Ingredients</label>-->
-<!--        <ul><th:block th:each="ingredient : ${ingredients}">-->
-<!--            <li th:text="${ingredient.name}"></li>-->
-<!--        </th:block></ul>-->
-<!--        <a th:href="@{'/ingredients/add'}">Add Ingredients</a>-->
-
-<!--    </div>-->
-
-
-<!--    <div class="form-group">-->
-<!--        <label th:for="steps">Steps</label>-->
-<!--        <th:block th:each="step : ${steps}">-->
-<!--            <input type="checkbox" name="steps" th:value="${step.id}">-->
-<!--            <label th:text="${step.description}"></label>-->
-<!--        </th:block>-->
-<!--        <a th:href="@{'/steps/add'}">Add Steps</a>-->
-<!--    </div>-->
-
-<!--    <div class="form-group">-->
-
-<!--        <label th:for="steps">Steps</label>-->
-<!--        <ol><th:block th:each="step : ${steps}">-->
-<!--            <li th:text="${step.name}"></li>-->
-<!--        </th:block></ol>-->
-<!--        <a th:href="@{'/steps/add'}">Add Steps</a>-->
-
-<!--    </div>-->
 
     <div class="form-group">
         <label>Photos: </label>

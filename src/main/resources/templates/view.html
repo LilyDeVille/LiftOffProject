@@ -15,23 +15,25 @@
 
 <p th:text="${recipe.description}"></p>
 
-<table>
+<table class="table">
 
     <tr>
-        <th>Name</th>
-        <th>Quantity</th>
         <th>Measurement</th>
+        <th>Quantity</th>
+        <th>Name</th>
     </tr>
 
     <tr th:each="ingredient : ${ingredients}">
-        <td th:text=" ${ingredient.name}">
 
-        </td>
 
         <td th:text=" ${ingredient.quantity}">
         </td>
 
         <td th:text=" ${ingredient.unitOfMeasurement}">
+
+        <td th:text=" ${ingredient.name}">
+
+        </td>
 
         </td>
     </tr>
