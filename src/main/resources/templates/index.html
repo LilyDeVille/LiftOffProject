@@ -1,46 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<style>
-* {
-  box-sizing: border-box;
-}
 
-.row {
-  margin-left:-5px;
-  margin-right:-5px;
-}
-
-.column {
-  float: left;
-  width: 50%;
-  padding: 5px;
-}
-
-/* Clearfix (clear floats) */
-.row::after {
-  content: "";
-  clear: both;
-  display: table;
-}
-
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-  width: 100%;
-  border: 1px solid #ddd;
-}
-
-th, td {
-  text-align: left;
-  padding: 16px;
-}
-
-tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-</style>
 
 <head th:replace="fragments :: head"> </head>
+<link th:href="@{/styles/index.css}" rel="stylesheet" />
 
 
 
@@ -49,6 +12,10 @@ tr:nth-child(even) {
 <body class="p-3 mb-2 bg-light text-dark">
 
 <div th:replace="fragments :: page-header"></div>
+
+<div class="container">
+
+    <div class="item">
 
 <table>
 
@@ -69,7 +36,10 @@ tr:nth-child(even) {
     </tr>
 
 </table>
+    </div>
 
+
+    <div class="item">
 <table>
 
     <tr>
@@ -88,14 +58,22 @@ tr:nth-child(even) {
     </tr>
 
 </table>
+    </div>
+
+    <div class="largeitem">
 
 <div>
     <h3>Featured Recipe</h3>
     <h4><a th:href="@{'view/' + ${featuredRecipe.id}}" th:text=" ${featuredRecipe.name}"></a></h4>
     <img th:src="@{${featuredRecipe.photosImagePath}}" style="width:500px;height:400px;"/>
 
+
+
 </div>
 
+    </div>
+
+</div>
 
 </body>
 </html>

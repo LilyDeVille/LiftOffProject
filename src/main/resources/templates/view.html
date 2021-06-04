@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head">
+    <link th:href="@{/styles/index.css}" rel="stylesheet" />
 
     <title></title>
 </head>
@@ -10,35 +11,42 @@
 
 <h1 th:text="${recipe.name}"></h1>
 <h3 th:text="${recipe.user}"></h3>
-<a th:if="${isOwner}" th:href="@{'../../edit/' + ${recipeId}}">Edit Recipe</a>
+<h5><a th:if="${isOwner}" th:href="@{'../../edit/' + ${recipeId}}">Edit Recipe</a></h5>
 <img th:src="@{${recipe.photosImagePath}}" style="width:500px;height:400px;"/>
 
+
+
+
+
+
+        <table class="table table-sm table-item">
+
+            <tr>
+                <th>Measurement</th>
+                <th>Quantity</th>
+                <th>Name</th>
+            </tr>
+
+            <tr th:each="ingredient : ${ingredients}">
+
+
+                <td th:text=" ${ingredient.quantity}">
+                </td>
+
+                <td th:text=" ${ingredient.unitOfMeasurement}">
+
+                <td th:text=" ${ingredient.name}">
+
+                </td>
+
+                </td>
+            </tr>
+
+        </table>
+
+
+
 <p th:text="${recipe.description}"></p>
-
-<table class="table">
-
-    <tr>
-        <th>Measurement</th>
-        <th>Quantity</th>
-        <th>Name</th>
-    </tr>
-
-    <tr th:each="ingredient : ${ingredients}">
-
-
-        <td th:text=" ${ingredient.quantity}">
-        </td>
-
-        <td th:text=" ${ingredient.unitOfMeasurement}">
-
-        <td th:text=" ${ingredient.name}">
-
-        </td>
-
-        </td>
-    </tr>
-
-</table>
 
 
 
